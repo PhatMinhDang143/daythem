@@ -217,24 +217,38 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       return false;
     }
 
-    if (!appsScriptUrl) {
-      // Local demo mode authentication with strict password check
-      const localUser = users.find(
-        (u) => u.email.toLowerCase() === cleanEmail
-      );
-      if (!localUser) {
-        showToast('Tài khoản không tồn tại trên hệ thống local. Vui lòng kiểm tra lại Email.', 'error');
-        return false;
+    setIsSyncing(true);
+    try {
+      if (appsScriptUrl) {
+        const res = await loginWithAppsScript(appsScriptUrl, cleanEmail, cleanPassword);
+        if (res.status === 'success' && res.user && res.sessionToken) {
+          setStoredAuthToken(res.sessionToken);
+          setCurrentUser(res.user);
+          setIsAuthenticated(true);
+          showToast(`Đăng nhập thành công! Xin chào ${res.user.name}`, 'success');
+          setIsSyncing(false);
+          return true;
+        }
       }
+    } catch (err: any) {
+      console.warn('Apps Script login fallback to local user verification:', err);
+    }
 
+    // Local fallback authentication
+    const localUser = users.find(
+      (u) => u.email.toLowerCase() === cleanEmail
+    );
+    if (localUser) {
       if (localUser.status === 'Tạm khóa') {
         showToast('Tài khoản này hiện đang bị tạm khóa. Vui lòng liên hệ Quản trị viên.', 'error');
+        setIsSyncing(false);
         return false;
       }
 
       const expectedPassword = localUser.password || '123456';
       if (!cleanPassword || cleanPassword !== expectedPassword) {
         showToast('Mật khẩu không chính xác! (Mật khẩu mặc định: 123456)', 'error');
+        setIsSyncing(false);
         return false;
       }
 
@@ -243,29 +257,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setCurrentUser(localUser);
       setIsAuthenticated(true);
       showToast(`Đăng nhập thành công với vai trò ${localUser.role}! Xin chào ${localUser.name}`, 'success');
+      setIsSyncing(false);
       return true;
     }
 
-    setIsSyncing(true);
-    try {
-      const res = await loginWithAppsScript(appsScriptUrl, cleanEmail, cleanPassword);
-      if (res.status === 'success' && res.user && res.sessionToken) {
-        setStoredAuthToken(res.sessionToken);
-        setCurrentUser(res.user);
-        setIsAuthenticated(true);
-        showToast(`Đăng nhập thành công! Xin chào ${res.user.name}`, 'success');
-        setIsSyncing(false);
-        return true;
-      } else {
-        showToast(`Đăng nhập thất bại: ${res.message || 'Mật khẩu hoặc tài khoản không đúng'}`, 'error');
-        setIsSyncing(false);
-        return false;
-      }
-    } catch (err: any) {
-      showToast(`Lỗi xác thực: ${err.message}`, 'error');
-      setIsSyncing(false);
-      return false;
-    }
+    showToast('Tài khoản không tồn tại. Vui lòng kiểm tra lại Email.', 'error');
+    setIsSyncing(false);
+    return false;
   };
 
   const changeUserPassword = async (oldPassword: string, newPassword: string): Promise<boolean> => {

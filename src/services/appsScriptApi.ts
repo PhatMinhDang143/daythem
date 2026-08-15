@@ -6,8 +6,11 @@
 const STORAGE_KEY_SCRIPT_URL = 'triduc_apps_script_url';
 const STORAGE_KEY_AUTH_TOKEN = 'triduc_auth_token';
 
+export const DEFAULT_APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbzsEknn-XUAldQ6CcfzHHps-gmQB4ehmhdbuPwtUUC-ac7g9I9GfApz3c7RQYxW9LJpJA/exec';
+
 export const getStoredScriptUrl = (): string => {
-  return localStorage.getItem(STORAGE_KEY_SCRIPT_URL) || '';
+  return localStorage.getItem(STORAGE_KEY_SCRIPT_URL) || DEFAULT_APPS_SCRIPT_URL;
 };
 
 export const setStoredScriptUrl = (url: string): void => {
