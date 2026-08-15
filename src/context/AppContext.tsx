@@ -152,15 +152,15 @@ const isDevEnv = typeof import.meta !== 'undefined' && (import.meta as any).env 
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [activeModule, setActiveModule] = useState<ModuleType>('dashboard');
-  const [users, setUsers] = useState<User[]>(() => (isDevEnv ? initialUsers : [initialUsers[0]]));
+  const [users, setUsers] = useState<User[]>(initialUsers);
   const [currentUser, setCurrentUser] = useState<User>(initialUsers[0]);
-  const [students, setStudents] = useState<Student[]>(() => (isDevEnv ? initialStudents : []));
-  const [classes, setClasses] = useState<ClassRoom[]>(() => (isDevEnv ? initialClasses : []));
-  const [sessions, setSessions] = useState<SessionDetail[]>(() => (isDevEnv ? initialSessions : []));
-  const [evaluations, setEvaluations] = useState<StudentEvaluation[]>(() => (isDevEnv ? initialEvaluations : []));
-  const [testScores, setTestScores] = useState<TestScore[]>(() => (isDevEnv ? initialTestScores : []));
-  const [invoices, setInvoices] = useState<Invoice[]>(() => (isDevEnv ? initialInvoices : []));
-  const [expenses, setExpenses] = useState<Expense[]>(() => (isDevEnv ? initialExpenses : []));
+  const [students, setStudents] = useState<Student[]>(initialStudents);
+  const [classes, setClasses] = useState<ClassRoom[]>(initialClasses);
+  const [sessions, setSessions] = useState<SessionDetail[]>(initialSessions);
+  const [evaluations, setEvaluations] = useState<StudentEvaluation[]>(initialEvaluations);
+  const [testScores, setTestScores] = useState<TestScore[]>(initialTestScores);
+  const [invoices, setInvoices] = useState<Invoice[]>(initialInvoices);
+  const [expenses, setExpenses] = useState<Expense[]>(initialExpenses);
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   // Google Apps Script API Server state
