@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Primary Brand Colors (MINH PHAT EDU Palette) */
+  --color-primary: #5289AD;
+  --color-primary-hover: #427293;
+  --color-primary-light: #ACBCBF;
+  --color-primary-dark: #243C4C;
+
+  /* MINH PHAT EDU Color Palette Tokens */
+  --color-brand-blue: #5289AD;
+  --color-brand-navy: #243C4C;
+  --color-brand-steel: #698696;
+  --color-brand-slate: #ACBCBF;
+  --color-brand-ice: #F4FCFB;
+
+  /* Surface & Background Design Tokens based on Palette */
+  --color-surface-base: #172733;
+  --color-surface-card: #243C4C;
+  --color-surface-elevated: #2f4a5c;
+  --color-surface-hover: #3b5c72;
+  --color-surface-border: #3b5568;
+
+  /* Typography Design Tokens */
+  --color-text-main: #F4FCFB;
+  --color-text-muted: #ACBCBF;
+  --color-text-subtle: #698696;
+
+  /* Functional Status Colors */
+  --color-status-success: #10b981;
+  --color-status-warning: #f59e0b;
+  --color-status-danger: #ef4444;
+  --color-status-info: #5289AD;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #172733;
+}
+::-webkit-scrollbar-thumb {
+  background: #3b5568;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5289AD;
+}
+
+/* Status Badge Style Guide Utilities */
+.badge-status-paid {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badge-status-unpaid {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badge-status-overdue {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badge-status-active {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badge-status-inactive {
+  background-color: rgba(100, 116, 139, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}

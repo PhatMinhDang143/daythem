@@ -1,0 +1,8 @@
+{
+  "name": "MINH PHAT EDU",
+  "description": "Hệ thống quản lý trung tâm dạy thêm MINH PHAT EDU - Học toán chill, Chill tới chiều",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
