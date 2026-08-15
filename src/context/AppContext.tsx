@@ -148,8 +148,6 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-const isDevEnv = typeof import.meta !== 'undefined' && (import.meta as any).env ? (import.meta as any).env.DEV : process.env.NODE_ENV !== 'production';
-
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [activeModule, setActiveModule] = useState<ModuleType>('dashboard');
   const [users, setUsers] = useState<User[]>(initialUsers);
